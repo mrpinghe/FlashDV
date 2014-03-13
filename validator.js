@@ -42,52 +42,36 @@
 							if ($.trim(val).length > this.test) {
 								results.pass = false;
 								var msg = displayName + " is too long. It needs to be shorter than " + this.test + " characters";
-								if (this.errorMsg != undefined) {
-									msg = this.errorMsg;
-								}
-								results.errors.push(msg);
 							}
 						}
 						else if (this.type == 'minlength') {
 							if ($.trim(val) != "" && $.trim(val).length < this.test) {
 								results.pass = false;
 								var msg = displayName + " is too short. It needs to be longer than " + this.test + " characters";
-								if (this.errorMsg != undefined) {
-									msg = this.errorMsg;
-								}
-								results.errors.push(msg);
 							}
 						}
 						else if (this.type == 'required') {
 							if ($.trim(val) == "") {
 								results.pass = false;
 								var msg = displayName + " is required";
-								if (this.errorMsg != undefined) {
-									msg = this.errorMsg;
-								}
-								results.errors.push(msg);
 							}
 						}
 						else if (this.type == 'knownGood') {
 							if ($.trim(val) != "" && this.test.test(val) == 0) {
 								results.pass = false;
 								var msg = displayName + " is invalid";
-								if (this.errorMsg != undefined) {
-									msg = this.errorMsg;
-								}
-								results.errors.push(msg);
 							}
 						}
 						else if (this.type == 'custom') {
 							if (!this.test()) {
 								results.pass = false;
 								var msg = displayName + " failed validation";
-								if (this.errorMsg != undefined) {
-									msg = this.errorMsg;
-								}
-								results.errors.push(msg);
 							}
 						}
+						if (this.errorMsg != undefined) {
+							msg = this.errorMsg;
+						}
+						results.errors.push(msg);
 					});
 				});
 			}
